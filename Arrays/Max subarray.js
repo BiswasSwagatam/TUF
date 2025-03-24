@@ -8,3 +8,33 @@ var maxSubArray = function (nums) {
   }
   return sum;
 };
+
+///////////////////////////////////////////////////
+// printing the subarray
+
+var findDuplicate = function (nums) {
+  let sum = 0;
+  let maxi = -Infinity;
+  let ansStart,
+    ansEnd = -1;
+  let start = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (sum == 0) {
+      start = i;
+    }
+    sum = sum + nums[i];
+
+    if (sum > maxi) {
+      maxi = sum;
+      ansStart = start;
+      ansEnd = i;
+    }
+
+    if (sum < 0) {
+      sum = 0;
+    }
+  }
+
+  return nums.slice(ansStart, ansEnd + 1);
+};
